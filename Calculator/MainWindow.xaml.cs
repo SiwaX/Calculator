@@ -20,8 +20,9 @@ namespace Calculator
     {
         public double _firstNumber = 0;
         double _result = 0;
-        double _resTmp = 0;
+        double _secondNumber = 0;
         string Znak = null;
+        string allResult = null;
         public MainWindow()
         {
             InitializeComponent();
@@ -29,15 +30,14 @@ namespace Calculator
 
         public void OperationParams(params Button[] Numbers)
         {
-            
+
         }
 
         private void Result_Button_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
             forText.Text += button.Content.ToString();
-            forResultLabel.Content += button.Content.ToString();
-
+            allResult += button.Content.ToString();
 
 
 
@@ -52,13 +52,45 @@ namespace Calculator
                         forResultLabel.Content = null;
                         break;
                     case "+":
-                        if (button.Content.ToString() == "+")
+                        if (Znak == "-")
                         {
-                            
-                            string tmp = forText.Text.Remove(forText.Text.Length - 1);
-                            _firstNumber = Convert.ToDouble(tmp);
+                            _firstNumber = _firstNumber - double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            forResultLabel.Content = _firstNumber.ToString() + "+";
                             Znak = "+";
                             forText.Clear();
+                            break;
+                        }
+                        else if (Znak == "/")
+                        {
+                            _firstNumber = _firstNumber / double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            forResultLabel.Content = _firstNumber.ToString() + "+";
+                            Znak = "+";
+                            forText.Clear();
+                            break;
+                        }
+                        else if (Znak == "x")
+                        {
+                            _firstNumber = _firstNumber * double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            forResultLabel.Content = _firstNumber.ToString() + "+";
+                            Znak = "+";
+                            forText.Clear();
+                            break;
+                        }
+                        else if (forResultLabel.Content != null)
+                        {
+                            _firstNumber = _firstNumber + double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            forResultLabel.Content = _firstNumber.ToString() + "+";
+                            forText.Clear();
+                            break;
+                        }
+                        else if (button.Content.ToString() == "+")
+                        {
+
+
+                            _firstNumber = double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            forResultLabel.Content = _firstNumber.ToString() + "+";
+                            forText.Clear();
+                            Znak = "+";
                             break;
                         }
                         else
@@ -67,10 +99,41 @@ namespace Calculator
                             break;
                         }
                     case "-":
-                        if (button.Content.ToString() == "-")
+                        if (Znak == "+")
                         {
-                            string tmp = forText.Text.Remove(forText.Text.Length - 1);
-                            _firstNumber = Convert.ToDouble(tmp);
+                            _firstNumber = _firstNumber + double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            forResultLabel.Content = _firstNumber.ToString() + "-";
+                            Znak = "-";
+                            forText.Clear();
+                            break;
+                        }
+                        else if (Znak == "/")
+                        {
+                            _firstNumber = _firstNumber / double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            forResultLabel.Content = _firstNumber.ToString() + "-";
+                            Znak = "-";
+                            forText.Clear();
+                            break;
+                        }
+                        else if (Znak == "x")
+                        {
+                            _firstNumber = _firstNumber * double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            forResultLabel.Content = _firstNumber.ToString() + "-";
+                            Znak = "-";
+                            forText.Clear();
+                            break;
+                        }
+                        else if (forResultLabel.Content != null)
+                        {
+                            _firstNumber = _firstNumber - double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            forResultLabel.Content = _firstNumber.ToString() + "-";
+                            forText.Clear();
+                            break;
+                        }
+                        else if (button.Content.ToString() == "-")
+                        {
+                            _firstNumber = double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            forResultLabel.Content = _firstNumber.ToString() + "-";
                             Znak = "-";
                             forText.Clear();
                             break;
@@ -81,10 +144,41 @@ namespace Calculator
                             break;
                         }
                     case "x":
+                        if (Znak == "+")
+                        {
+                            _firstNumber = _firstNumber + double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            forResultLabel.Content = _firstNumber.ToString() + "x";
+                            Znak = "x";
+                            forText.Clear();
+                            break;
+                        }
+                        else if (Znak == "/")
+                        {
+                            _firstNumber = _firstNumber / double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            forResultLabel.Content = _firstNumber.ToString() + "x";
+                            Znak = "x";
+                            forText.Clear();
+                            break;
+                        }
+                        else if (Znak == "-")
+                        {
+                            _firstNumber = _firstNumber - double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            forResultLabel.Content = _firstNumber.ToString() + "x";
+                            Znak = "x";
+                            forText.Clear();
+                            break;
+                        }
+                        else if (forResultLabel.Content != null)
+                        {
+                            _firstNumber = _firstNumber * double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            forResultLabel.Content = _firstNumber.ToString() + "x";
+                            forText.Clear();
+                            break;
+                        }
                         if (button.Content.ToString() == "x")
                         {
-                            string tmp = forText.Text.Remove(forText.Text.Length - 1);
-                            _firstNumber = Convert.ToDouble(tmp);
+                            _firstNumber = double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            forResultLabel.Content = _firstNumber.ToString() + "x";
                             Znak = "*";
                             forText.Clear();
                             break;
@@ -95,10 +189,41 @@ namespace Calculator
                             break;
                         }
                     case "/":
+                        if (Znak == "+")
+                        {
+                            _firstNumber = _firstNumber + double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            forResultLabel.Content = _firstNumber.ToString() + "/";
+                            Znak = "/";
+                            forText.Clear();
+                            break;
+                        }
+                        else if (Znak == "-")
+                        {
+                            _firstNumber = _firstNumber - double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            forResultLabel.Content = _firstNumber.ToString() + "/";
+                            Znak = "/";
+                            forText.Clear();
+                            break;
+                        }
+                        else if (Znak == "x")
+                        {
+                            _firstNumber = _firstNumber * double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            forResultLabel.Content = _firstNumber.ToString() + "/";
+                            Znak = "/";
+                            forText.Clear();
+                            break;
+                        }
+                        else if (forResultLabel.Content != null)
+                        {
+                            _firstNumber = _firstNumber / double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            forResultLabel.Content = _firstNumber.ToString() + "/";
+                            forText.Clear();
+                            break;
+                        }
                         if (button.Content.ToString() == "/")
                         {
-                            string tmp = forText.Text.Remove(forText.Text.Length - 1);
-                            _firstNumber = Convert.ToDouble(tmp);
+                            _firstNumber = double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            forResultLabel.Content = _firstNumber.ToString() + "/";
                             Znak = "/";
                             forText.Clear();
                             break;
@@ -111,31 +236,30 @@ namespace Calculator
                     case "=":
                         if (Znak == "+")
                         {
-                            string tmp = forText.Text.Remove(forText.Text.Length - 1);
-                            _result = _firstNumber + Convert.ToDouble(tmp);
-                            _resTmp += _result + Convert.ToDouble(tmp);
-                            forResultLabel.Content = _resTmp.ToString();
+                            _secondNumber = double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            _result = _firstNumber + _secondNumber;
+                            forResultLabel.Content = allResult + "=" + _result.ToString();
                             break;
                         }
                         else if (Znak == "-")
                         {
-                            string tmp = forText.Text.Remove(forText.Text.Length - 1);
-                            _result = _firstNumber - Convert.ToDouble(tmp);
-                            forResultLabel.Content = _result.ToString();
+                            _secondNumber = double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            _result = _firstNumber - _secondNumber;
+                            forResultLabel.Content = allResult + "=" + _result.ToString();
                             break;
                         }
                         else if (Znak == "*")
                         {
-                            string tmp = forText.Text.Remove(forText.Text.Length - 1);
-                            _result = _firstNumber * Convert.ToDouble(tmp);
-                            forResultLabel.Content = _result.ToString();
+                            _secondNumber = double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            _result = _firstNumber * _secondNumber;
+                            forResultLabel.Content = allResult + "=" + _result.ToString();
                             break;
                         }
                         else if (Znak == "/")
                         {
-                            string tmp = forText.Text.Remove(forText.Text.Length - 1);
-                            _result = _firstNumber / Convert.ToDouble(tmp);
-                            forResultLabel.Content = _result.ToString();
+                            _secondNumber = double.Parse(forText.Text.Remove(forText.Text.Length - 1));
+                            _result = _firstNumber / _secondNumber;
+                            forResultLabel.Content = allResult + "=" + _result.ToString();
                             break;
                         }
                         else
@@ -146,19 +270,12 @@ namespace Calculator
 
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + "Заебало вылетать");
             }
 
-            switch (button.Content)
-            {
-                case "%":
-                    _result = Convert.ToDouble(forText.Text) / 100;
-                    break;
 
-
-            }
 
         }
     }

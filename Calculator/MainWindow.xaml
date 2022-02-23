@@ -18,6 +18,7 @@
             <ColumnDefinition Width="98"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
+            <Label x:Name="AllResult" FontSize="23" HorizontalAlignment="Right"></Label>
             <Label x:Name="forResultLabel" FontSize="24" HorizontalAlignment="Right"/>
             <TextBox x:Name="forText" Text="" HorizontalAlignment="Right" HorizontalContentAlignment="Right" FontSize="48"/>
         </StackPanel>
